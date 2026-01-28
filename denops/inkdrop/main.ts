@@ -51,6 +51,7 @@ export async function main(denops: Denops) {
 
   router.addHandler("note", {
     load: (_ctx, buf) => loadNote(denops, stateMan, buf),
+    save: (_ctx, buf) => saveNote(denops, stateMan, buf),
   });
 
   denops.dispatcher = await router.dispatch(denops, {
