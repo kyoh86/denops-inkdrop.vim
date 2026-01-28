@@ -1,0 +1,40 @@
+*inkdrop.txt*   Inkdrop client for Vim/Neovim
+
+CONTENTS                                                      *inkdrop-contents*
+
+  1. Introduction            |inkdrop-introduction|
+  2. Setup                   |inkdrop-setup|
+  3. Commands                |inkdrop-commands|
+  4. Mappings                |inkdrop-mappings|
+
+==============================================================================
+INTRODUCTION                                                 *inkdrop-introduction*
+
+Inkdrop client for Vim/Neovim via denops.vim and Inkdrop Local HTTP Server.
+
+==============================================================================
+SETUP                                                        *inkdrop-setup*
+
+Call the setup functions from your vimrc:
+
+  call inkdrop#setup#commands()
+  call inkdrop#setup#maps()
+
+==============================================================================
+COMMANDS                                                     *inkdrop-commands*
+
+:InkdropLogin         Prompt for username/password/base URL and save them.
+:InkdropNotes         Open notes list.
+
+==============================================================================
+MAPPINGS                                                     *inkdrop-mappings*
+
+In the notes list buffer:
+
+<CR>                Open note under cursor.
+<Ctrl-h>            Open note in split.
+<Ctrl-v>            Open note in vertical split.
+<Ctrl-t>            Open note in new tab.
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl
