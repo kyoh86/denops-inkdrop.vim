@@ -1,6 +1,6 @@
 function! inkdrop#setup#commands()
   command! InkdropLogin call inkdrop#login()
-  command! InkdropNotes call denops#notify('inkdrop', 'router:open', ['notes-list'])
+  command! -nargs=? InkdropNotes call inkdrop#notes(<q-args>)
   command! InkdropSearch call denops#notify('inkdrop', 'search', [])
 endfunction
 

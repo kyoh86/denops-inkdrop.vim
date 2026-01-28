@@ -17,7 +17,7 @@ call inkdrop#setup#maps()
 ## Usage
 
 - `:InkdropLogin` to set username/password
-- `:InkdropNotes` to open the notes list
+- `:InkdropNotes [keyword]` to open the notes list (optional keyword)
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 
