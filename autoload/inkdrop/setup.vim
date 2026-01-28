@@ -6,9 +6,6 @@ function! inkdrop#setup#commands()
 endfunction
 
 function! inkdrop#setup#maps()
-  if get(g:, 'inkdrop_disable_default_mappings', 0)
-    return
-  endif
   augroup inkdrop-setup-maps
     autocmd!
     autocmd Filetype inkdrop_notes_list nnoremap <buffer> <cr>  <plug>(inkdrop-buffer-action-notes-list-open)
