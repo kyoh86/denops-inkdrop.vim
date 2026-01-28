@@ -69,10 +69,8 @@ export async function main(denops: Denops) {
           getLogger("denops-inkdrop").warn("Cancelled");
           return;
         }
-        const baseUrl = await input(denops, {
-          prompt: "Base URL: ",
-          default: "http://127.0.0.1:19840",
-        });
+        const baseUrl =
+          (await denops.eval("get(g:, 'inkdrop_base_url', '')")) as string;
         const normalizedBaseUrl = (baseUrl || "http://127.0.0.1:19840")
           .trim()
           .replace(/;+$/, "");

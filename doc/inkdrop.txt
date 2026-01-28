@@ -23,7 +23,7 @@ Call the setup functions from your vimrc:
 ==============================================================================
 COMMANDS                                                     *inkdrop-commands*
 
-:InkdropLogin         Prompt for username/password/base URL and save them.
+:InkdropLogin         Prompt for username/password and save them.
 :InkdropNotes         Open notes list.
 
 ==============================================================================
@@ -35,6 +35,12 @@ In the notes list buffer:
 <Ctrl-h>            Open note in split.
 <Ctrl-v>            Open note in vertical split.
 <Ctrl-t>            Open note in new tab.
+
+==============================================================================
+CONFIGURATION                                               *inkdrop-configuration*
+
+g:inkdrop_base_url   Base URL for Inkdrop Local HTTP Server.
+                    Default: "http://127.0.0.1:19840"
 
 ==============================================================================
 vim:tw=78:ts=8:noet:ft=help:norl
