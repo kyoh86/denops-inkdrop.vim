@@ -13,7 +13,7 @@ import {
 import { Router } from "@kyoh86/denops-router";
 import { XDGStateMan } from "./state.ts";
 import { loadNotesList, openNote } from "./handler/notes_list.ts";
-import { loadNote } from "./handler/note.ts";
+import { loadNote, saveNote } from "./handler/note.ts";
 
 export async function main(denops: Denops) {
   const stateMan = new XDGStateMan();
