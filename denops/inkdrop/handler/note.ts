@@ -17,47 +17,51 @@ export async function loadNote(
   stateMan: StateMan,
   buf: Buffer,
 ) {
-  const params = ensure(
-    buf.bufname.params,
-    is.ObjectOf({ noteId: is.String }),
-  );
-
-  await option.bufhidden.setBuffer(denops, buf.bufnr, "wipe");
-
-  const state = await stateMan.load();
-  if (!state) {
-    getLogger("denops-inkdrop").error(
-      "No credentials found. Run :InkdropLogin first.",
+  try {
+    const params = ensure(
+      buf.bufname.params,
+      is.ObjectOf({ noteId: is.String }),
     );
-    return;
-  }
 
-  const client = new InkdropClient({
-    baseUrl: state.baseUrl,
-    username: state.username,
-    password: state.password,
-  });
+    await option.bufhidden.setBuffer(denops, buf.bufnr, "wipe");
 
-  const note = await client.docs.get<NoteDoc>(params.noteId);
-  const lines: string[] = [];
-  if (note.title) {
-    lines.push(`# ${note.title}`);
-    lines.push("");
-  }
-  if (note.body) {
-    lines.push(...note.body.split("\n"));
-  }
+    const state = await stateMan.load();
+    if (!state) {
+      getLogger("denops-inkdrop").error(
+        "No credentials found. Run :InkdropLogin first.",
+      );
+      return;
+    }
 
-  await buffer.ensure(denops, buf.bufnr, async () => {
-    await batch(denops, async (denops) => {
-      await buffer.replace(denops, buf.bufnr, lines);
-      await variable.b.set(denops, "inkdrop_note_id", params.noteId);
-      await option.filetype.setLocal(denops, Filetype.Note);
-      await option.modified.setLocal(denops, false);
-      await option.readonly.setLocal(denops, false);
-      await option.modifiable.setLocal(denops, true);
+    const client = new InkdropClient({
+      baseUrl: state.baseUrl,
+      username: state.username,
+      password: state.password,
     });
-  });
+
+    const note = await client.docs.get<NoteDoc>(params.noteId);
+    const lines: string[] = [];
+    if (note.title) {
+      lines.push(`# ${note.title}`);
+      lines.push("");
+    }
+    if (note.body) {
+      lines.push(...note.body.split("\n"));
+    }
+
+    await buffer.ensure(denops, buf.bufnr, async () => {
+      await batch(denops, async (denops) => {
+        await buffer.replace(denops, buf.bufnr, lines);
+        await variable.b.set(denops, "inkdrop_note_id", params.noteId);
+        await option.filetype.setLocal(denops, Filetype.Note);
+        await option.modified.setLocal(denops, false);
+        await option.readonly.setLocal(denops, false);
+        await option.modifiable.setLocal(denops, true);
+      });
+    });
+  } catch (err) {
+    getLogger("denops-inkdrop").error(err);
+  }
 }
 
 function parseNote(lines: string[]): { title?: string; body: string } {
@@ -81,32 +85,36 @@ export async function saveNote(
   stateMan: StateMan,
   _buf: Buffer,
 ) {
-  const noteId = ensure(
-    await variable.b.get(denops, "inkdrop_note_id"),
-    is.String,
-  );
-
-  const state = await stateMan.load();
-  if (!state) {
-    getLogger("denops-inkdrop").error(
-      "No credentials found. Run :InkdropLogin first.",
+  try {
+    const noteId = ensure(
+      await variable.b.get(denops, "inkdrop_note_id"),
+      is.String,
     );
-    return;
+
+    const state = await stateMan.load();
+    if (!state) {
+      getLogger("denops-inkdrop").error(
+        "No credentials found. Run :InkdropLogin first.",
+      );
+      return;
+    }
+
+    const client = new InkdropClient({
+      baseUrl: state.baseUrl,
+      username: state.username,
+      password: state.password,
+    });
+
+    const note = await client.docs.get<NoteDoc>(noteId);
+    const lines = await fn.getline(denops, 1, "$") as string[];
+    const parsed = parseNote(lines);
+
+    await client.notes.upsert({
+      ...note,
+      title: parsed.title,
+      body: parsed.body,
+    });
+  } catch (err) {
+    getLogger("denops-inkdrop").error(err);
   }
-
-  const client = new InkdropClient({
-    baseUrl: state.baseUrl,
-    username: state.username,
-    password: state.password,
-  });
-
-  const note = await client.docs.get<NoteDoc>(noteId);
-  const lines = await fn.getline(denops, 1, "$") as string[];
-  const parsed = parseNote(lines);
-
-  await client.notes.upsert({
-    ...note,
-    title: parsed.title,
-    body: parsed.body,
-  });
 }
