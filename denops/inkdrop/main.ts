@@ -94,6 +94,14 @@ export async function main(denops: Denops) {
         getLogger("denops-inkdrop").error(err);
       }
     },
+    async logout() {
+      try {
+        await stateMan.remove();
+        await echo(denops, "Logged out");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
     async search() {
       try {
         const keyword = await input(denops, { prompt: "Keyword: " });

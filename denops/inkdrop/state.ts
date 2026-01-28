@@ -13,6 +13,7 @@ export type State = {
 export interface StateMan {
   load(): Promise<State | undefined>;
   save(state: State): Promise<void>;
+  remove(): Promise<void>;
 }
 
 export class XDGStateMan implements StateMan {
@@ -39,5 +40,12 @@ export class XDGStateMan implements StateMan {
     const path = XDGStateMan.statePath();
     await ensureFile(path);
     return Deno.writeTextFile(path, stringify(state), { create: true });
+  }
+
+  async remove() {
+    const path = XDGStateMan.statePath();
+    if (await exists(path, { isFile: true })) {
+      await Deno.remove(path);
+    }
   }
 }

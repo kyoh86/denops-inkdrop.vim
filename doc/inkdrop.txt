@@ -24,6 +24,7 @@ Call the setup functions from your vimrc:
 COMMANDS                                                     *inkdrop-commands*
 
 :InkdropLogin         Prompt for username/password and save them.
+:InkdropLogout        Clear saved credentials.
 :InkdropNotes [query] Open notes list (optional keyword).
 :InkdropSearch        Prompt for keyword and open notes list.
 

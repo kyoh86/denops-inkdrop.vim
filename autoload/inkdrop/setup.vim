@@ -1,5 +1,6 @@
 function! inkdrop#setup#commands()
   command! InkdropLogin call inkdrop#login()
+  command! InkdropLogout call inkdrop#logout()
   command! -nargs=? InkdropNotes call inkdrop#notes(<q-args>)
   command! InkdropSearch call denops#notify('inkdrop', 'search', [])
 endfunction
