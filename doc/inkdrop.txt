@@ -25,6 +25,7 @@ COMMANDS                                                     *inkdrop-commands*
 
 :InkdropLogin         Prompt for username/password and save them.
 :InkdropNotes         Open notes list.
+:InkdropSearch        Prompt for keyword and open notes list.
 
 ==============================================================================
 MAPPINGS                                                     *inkdrop-mappings*
@@ -35,12 +36,19 @@ In the notes list buffer:
 <Ctrl-h>            Open note in split.
 <Ctrl-v>            Open note in vertical split.
 <Ctrl-t>            Open note in new tab.
+<Ctrl-k>            Open previous page.
+<Ctrl-j>            Open next page.
+r                   Refresh list.
 
 ==============================================================================
 CONFIGURATION                                               *inkdrop-configuration*
 
 g:inkdrop_base_url   Base URL for Inkdrop Local HTTP Server.
                     Default: "http://127.0.0.1:19840"
+g:inkdrop_notes_limit   Max number of notes per page. Default: 100
+g:inkdrop_notes_sort    Sort key: "updatedAt", "createdAt", "title"
+                        Default: "updatedAt"
+g:inkdrop_notes_descending  Sort order flag. Default: 1
 
 ==============================================================================
 vim:tw=78:ts=8:noet:ft=help:norl

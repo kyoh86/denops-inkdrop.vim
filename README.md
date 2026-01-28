@@ -18,6 +18,7 @@ call inkdrop#setup#maps()
 
 - `:InkdropLogin` to set username/password
 - `:InkdropNotes` to open the notes list
+- `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 
 ### Base URL
@@ -27,6 +28,14 @@ You can override it via `g:inkdrop_base_url`:
 
 ```vim
 let g:inkdrop_base_url = 'http://localhost:19840'
+```
+
+### Notes list defaults
+
+```vim
+let g:inkdrop_notes_limit = 100
+let g:inkdrop_notes_sort = 'updatedAt' " or 'createdAt' / 'title'
+let g:inkdrop_notes_descending = 1
 ```
 
 ## License

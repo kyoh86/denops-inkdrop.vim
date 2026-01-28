@@ -12,7 +12,13 @@ import {
 
 import { Router } from "@kyoh86/denops-router";
 import { XDGStateMan } from "./state.ts";
-import { loadNotesList, openNote } from "./handler/notes_list.ts";
+import {
+  loadNotesList,
+  nextNotesList,
+  openNote,
+  prevNotesList,
+  refreshNotesList,
+} from "./handler/notes_list.ts";
 import { loadNote, saveNote } from "./handler/note.ts";
 
 export async function main(denops: Denops) {
@@ -46,6 +52,9 @@ export async function main(denops: Denops) {
     load: (_ctx, buf) => loadNotesList(denops, stateMan, buf),
     actions: {
       open: (_, params) => openNote(denops, router, params),
+      refresh: (buf, _) => refreshNotesList(denops, router, buf),
+      next: (buf, _) => nextNotesList(denops, router, buf),
+      prev: (buf, _) => prevNotesList(denops, router, buf),
     },
   });
 
@@ -81,6 +90,18 @@ export async function main(denops: Denops) {
           password,
         });
         await echo(denops, "Done");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async search() {
+      try {
+        const keyword = await input(denops, { prompt: "Keyword: " });
+        if (!keyword) {
+          getLogger("denops-inkdrop").warn("Cancelled");
+          return;
+        }
+        await router.open(denops, "notes-list", { q: keyword });
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }
