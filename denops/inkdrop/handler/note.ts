@@ -6,7 +6,7 @@ import { batch } from "@denops/std/batch";
 import { getLogger } from "@std/log";
 import { ensure, is } from "@core/unknownutil";
 
-import { InkdropClient } from "@kyoh86/inkdrop-local";
+import { InkdropClient, type NoteDoc } from "@kyoh86/inkdrop-local";
 import { Filetype } from "./filetype.ts";
 import type { StateMan } from "../state.ts";
 import type { Buffer } from "@kyoh86/denops-router";
@@ -38,7 +38,7 @@ export async function loadNote(
     password: state.password,
   });
 
-  const note = await client.docs.get(params.noteId);
+  const note = await client.docs.get<NoteDoc>(params.noteId);
   const lines: string[] = [];
   if (note.title) {
     lines.push(`# ${note.title}`);
@@ -79,7 +79,7 @@ function parseNote(lines: string[]): { title?: string; body: string } {
 export async function saveNote(
   denops: Denops,
   stateMan: StateMan,
-  buf: Buffer,
+  _buf: Buffer,
 ) {
   const noteId = ensure(
     await variable.b.get(denops, "inkdrop_note_id"),
@@ -100,7 +100,7 @@ export async function saveNote(
     password: state.password,
   });
 
-  const note = await client.docs.get(noteId);
+  const note = await client.docs.get<NoteDoc>(noteId);
   const lines = await fn.getline(denops, 1, "$") as string[];
   const parsed = parseNote(lines);
 
