@@ -73,8 +73,11 @@ export async function main(denops: Denops) {
           prompt: "Base URL: ",
           default: "http://127.0.0.1:19840",
         });
+        const normalizedBaseUrl = (baseUrl || "http://127.0.0.1:19840")
+          .trim()
+          .replace(/;+$/, "");
         await stateMan.save({
-          baseUrl: baseUrl || "http://127.0.0.1:19840",
+          baseUrl: normalizedBaseUrl,
           username,
           password,
         });
