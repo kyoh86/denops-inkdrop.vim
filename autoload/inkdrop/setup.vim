@@ -1,8 +1,6 @@
 function! inkdrop#setup#commands()
-  call denops#request('inkdrop', 'router:setup:command', ['notes-list'])
-  call denops#request('inkdrop', 'router:setup:command', ['notes-list', 'InkdropNotes'])
-  call denops#request('inkdrop', 'router:setup:command', ['note'])
   command! InkdropLogin call inkdrop#login()
+  command! InkdropNotes call denops#notify('inkdrop', 'router:open', ['notes-list'])
 endfunction
 
 function! inkdrop#setup#maps()
