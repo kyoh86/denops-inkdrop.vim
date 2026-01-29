@@ -20,6 +20,9 @@ Call the setup functions from your vimrc:
   call inkdrop#setup#commands()
   call inkdrop#setup#maps()
 
+The maps setup is optional. It adds default buffer mappings for list buffers.
+If you prefer your own mappings, skip it and use the <Plug> mappings below.
+
 ==============================================================================
 COMMANDS                                                     *inkdrop-commands*
 
@@ -40,6 +43,23 @@ COMMANDS                                                     *inkdrop-commands*
 
 ==============================================================================
 MAPPINGS                                                     *inkdrop-mappings*
+
+Global <Plug> mappings (define your own keymaps to these):
+
+<Plug>(inkdrop-login)
+<Plug>(inkdrop-logout)
+<Plug>(inkdrop-notes)
+<Plug>(inkdrop-new)
+<Plug>(inkdrop-books)
+<Plug>(inkdrop-menu)
+<Plug>(inkdrop-tags)
+<Plug>(inkdrop-edit-tags)
+<Plug>(inkdrop-rename-book)
+<Plug>(inkdrop-rename-tag)
+<Plug>(inkdrop-note-status)
+<Plug>(inkdrop-move-note)
+<Plug>(inkdrop-note-delete)
+<Plug>(inkdrop-search)
 
 In the notes list buffer:
 

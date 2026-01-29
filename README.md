@@ -11,6 +11,11 @@ Browse Inkdrop notes from Vim/Neovim via denops.vim and Inkdrop Local HTTP Serve
 
 ```vim
 call inkdrop#setup#commands()
+```
+
+If you want the default list keymaps (like `<CR>`, `r`, `s` in list buffers), also call:
+
+```vim
 call inkdrop#setup#maps()
 ```
 
@@ -31,6 +36,29 @@ call inkdrop#setup#maps()
 - `:InkdropNoteDelete` to delete the current note
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
+
+### <Plug> mappings
+
+The plugin does not define default global keymaps. Use these `<Plug>` mappings
+to define your own:
+
+- `<Plug>(inkdrop-login)`
+- `<Plug>(inkdrop-logout)`
+- `<Plug>(inkdrop-notes)`
+- `<Plug>(inkdrop-new)`
+- `<Plug>(inkdrop-books)`
+- `<Plug>(inkdrop-menu)`
+- `<Plug>(inkdrop-tags)`
+- `<Plug>(inkdrop-edit-tags)`
+- `<Plug>(inkdrop-rename-book)`
+- `<Plug>(inkdrop-rename-tag)`
+- `<Plug>(inkdrop-note-status)`
+- `<Plug>(inkdrop-move-note)`
+- `<Plug>(inkdrop-note-delete)`
+- `<Plug>(inkdrop-search)`
+
+List buffer `<Plug>` mappings are defined in their filetypes and are used by
+`inkdrop#setup#maps()`.
 
 ### Base URL
 
