@@ -20,6 +20,7 @@ import {
   refreshNotesList,
 } from "./handler/notes_list.ts";
 import { loadNote, saveNote } from "./handler/note.ts";
+import { loadNewNote, saveNewNote } from "./handler/new_note.ts";
 
 export async function main(denops: Denops) {
   const stateMan = new XDGStateMan();
@@ -63,6 +64,11 @@ export async function main(denops: Denops) {
     save: (_ctx, buf) => saveNote(denops, stateMan, buf),
   });
 
+  router.addHandler("new-note", {
+    load: (_ctx, buf) => loadNewNote(denops, stateMan, buf),
+    save: (_ctx, buf) => saveNewNote(denops, stateMan, buf),
+  });
+
   denops.dispatcher = await router.dispatch(denops, {
     async login() {
       try {
@@ -98,6 +104,13 @@ export async function main(denops: Denops) {
       try {
         await stateMan.remove();
         await echo(denops, "Logged out");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async newNote() {
+      try {
+        await router.open(denops, "new-note");
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }

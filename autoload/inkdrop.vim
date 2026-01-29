@@ -13,3 +13,7 @@ function! inkdrop#notes(q)
     call denops#notify("inkdrop", "router:open", ["notes-list", {"q": a:q}])
   endif
 endfunction
+
+function! inkdrop#new()
+  call denops#notify("inkdrop", "newNote", [])
+endfunction

@@ -19,6 +19,7 @@ call inkdrop#setup#maps()
 - `:InkdropLogin` to set username/password
 - `:InkdropLogout` to clear saved credentials
 - `:InkdropNotes [keyword]` to open the notes list (optional keyword)
+- `:InkdropNew` to create a new note
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 
@@ -37,6 +38,14 @@ let g:inkdrop_base_url = 'http://localhost:19840'
 let g:inkdrop_notes_limit = 100
 let g:inkdrop_notes_sort = 'updatedAt' " or 'createdAt' / 'title'
 let g:inkdrop_notes_descending = 1
+```
+
+### Note creation
+
+If you want to choose a specific notebook, set:
+
+```vim
+let g:inkdrop_default_book_id = 'your-book-id'
 ```
 
 ## License
