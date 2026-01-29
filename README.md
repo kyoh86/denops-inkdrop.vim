@@ -62,6 +62,32 @@ to define your own:
 List buffer `<Plug>` mappings are defined in their filetypes and are used by
 `inkdrop#setup#maps()`.
 
+Buffer-local `<Plug>` mappings:
+
+- Notes list:
+  - `<Plug>(inkdrop-buffer-action-notes-list-open)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-open-new)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-open-vnew)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-open-tabedit)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-prev)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-next)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-refresh)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-status)`
+- Books list:
+  - `<Plug>(inkdrop-buffer-action-books-list-open)`
+  - `<Plug>(inkdrop-buffer-action-books-list-open-new)`
+  - `<Plug>(inkdrop-buffer-action-books-list-open-vnew)`
+  - `<Plug>(inkdrop-buffer-action-books-list-open-tabedit)`
+  - `<Plug>(inkdrop-buffer-action-books-list-refresh)`
+- Tags list:
+  - `<Plug>(inkdrop-buffer-action-tags-list-open)`
+  - `<Plug>(inkdrop-buffer-action-tags-list-open-new)`
+  - `<Plug>(inkdrop-buffer-action-tags-list-open-vnew)`
+  - `<Plug>(inkdrop-buffer-action-tags-list-open-tabedit)`
+  - `<Plug>(inkdrop-buffer-action-tags-list-refresh)`
+- Menu list:
+  - `<Plug>(inkdrop-buffer-action-menu-list-open)`
+
 ### Base URL
 
 By default, the plugin connects to `http://127.0.0.1:19840`.
