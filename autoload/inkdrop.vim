@@ -22,6 +22,10 @@ function! inkdrop#books()
   call denops#notify("inkdrop", "books", [])
 endfunction
 
+function! inkdrop#menu()
+  call denops#notify("inkdrop", "menu", [])
+endfunction
+
 function! inkdrop#tags()
   call denops#notify("inkdrop", "tags", [])
 endfunction

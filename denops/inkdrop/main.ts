@@ -28,6 +28,7 @@ import {
   refreshBooksList,
   renameBook,
 } from "./handler/books_list.ts";
+import { loadMenuList, openMenuList } from "./handler/menu_list.ts";
 import {
   loadTagsList,
   openTagsList,
@@ -85,6 +86,13 @@ export async function main(denops: Denops) {
       open: (_, params) => openBooksList(denops, router, params),
       refresh: () => refreshBooksList(denops, router),
       rename: (_, params) => renameBook(denops, stateMan, router, params),
+    },
+  });
+
+  router.addHandler("menu-list", {
+    load: (_ctx, buf) => loadMenuList(denops, stateMan, buf),
+    actions: {
+      open: (_, params) => openMenuList(denops, router, params),
     },
   });
 
@@ -156,6 +164,13 @@ export async function main(denops: Denops) {
     async books() {
       try {
         await router.open(denops, "books-list");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async menu() {
+      try {
+        await router.open(denops, "menu-list");
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }

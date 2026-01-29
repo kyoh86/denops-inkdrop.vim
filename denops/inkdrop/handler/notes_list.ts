@@ -31,6 +31,8 @@ export async function loadNotesList(
           bookName: as.Optional(is.String),
           tagId: as.Optional(is.String),
           tagName: as.Optional(is.String),
+          status: as.Optional(is.String),
+          pinned: as.Optional(is.String),
           limit: as.Optional(is.String),
           skip: as.Optional(is.String),
           sort: as.Optional(is.String),
@@ -61,6 +63,13 @@ export async function loadNotesList(
     const bookName = params.bookName;
     const tagId = params.tagId;
     const tagName = params.tagName;
+    const statusParam = params.status;
+    const statuses = statusParam
+      ? statusParam.split(",").map((value) => value.trim()).filter(Boolean)
+      : [];
+    const pinned = params.pinned
+      ? params.pinned === "1" || params.pinned === "true"
+      : false;
 
     await option.bufhidden.setBuffer(denops, buf.bufnr, "wipe");
 
@@ -94,6 +103,14 @@ export async function loadNotesList(
         note.tags?.includes(tagId)
       );
     }
+    if (statuses.length > 0) {
+      filteredNotes = filteredNotes.filter((note) =>
+        statuses.includes(note.status ?? "none")
+      );
+    }
+    if (pinned) {
+      filteredNotes = filteredNotes.filter((note) => note.pinned);
+    }
     const noteIds = filteredNotes.map((note) => note._id);
     const noteTitles = filteredNotes.map((note) => note.title ?? "(untitled)");
 
@@ -113,6 +130,16 @@ export async function loadNotesList(
         await variable.b.set(denops, "inkdrop_notes_list_tag_id", tagId);
         await variable.b.set(denops, "inkdrop_notes_list_book_name", bookName);
         await variable.b.set(denops, "inkdrop_notes_list_tag_name", tagName);
+        await variable.b.set(
+          denops,
+          "inkdrop_notes_list_status",
+          statuses.join(","),
+        );
+        await variable.b.set(
+          denops,
+          "inkdrop_notes_list_pinned",
+          pinned ? 1 : 0,
+        );
         await buffer.replace(denops, buf.bufnr, noteTitles);
         await option.filetype.setLocal(denops, Filetype.NotesList);
         await option.modified.setLocal(denops, false);
@@ -126,6 +153,12 @@ export async function loadNotesList(
         }
         if (tagName || tagId) {
           labels.push(`tag=${tagName ?? tagId}`);
+        }
+        if (statuses.length > 0) {
+          labels.push(`status=${statuses.join("+")}`);
+        }
+        if (pinned) {
+          labels.push("pinned");
         }
         if (labels.length > 0) {
           await option.statusline.setLocal(
@@ -163,6 +196,14 @@ async function getListState(denops: Denops, buf: Buffer) {
         await variable.b.get(denops, "inkdrop_notes_list_tag_name"),
         as.Optional(is.String),
       ),
+      status: ensure(
+        await variable.b.get(denops, "inkdrop_notes_list_status"),
+        as.Optional(is.String),
+      ),
+      pinned: ensure(
+        await variable.b.get(denops, "inkdrop_notes_list_pinned", 0),
+        is.Number,
+      ) !== 0,
       limit: ensure(
         await variable.b.get(denops, "inkdrop_notes_list_limit", 100),
         is.Number,
@@ -231,17 +272,30 @@ export async function refreshNotesList(
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, bookName, tagId, tagName, limit, skip, sort, descending } =
-    await getListState(
-      denops,
-      buf,
-    );
+  const {
+    q,
+    bookId,
+    bookName,
+    tagId,
+    tagName,
+    status,
+    pinned,
+    limit,
+    skip,
+    sort,
+    descending,
+  } = await getListState(
+    denops,
+    buf,
+  );
   await router.open(denops, "notes-list", {
     q,
     bookId,
     bookName,
     tagId,
     tagName,
+    status,
+    pinned: pinned ? "1" : "0",
     limit: limit.toString(),
     skip: skip.toString(),
     sort,
@@ -254,17 +308,30 @@ export async function nextNotesList(
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, bookName, tagId, tagName, limit, skip, sort, descending } =
-    await getListState(
-      denops,
-      buf,
-    );
+  const {
+    q,
+    bookId,
+    bookName,
+    tagId,
+    tagName,
+    status,
+    pinned,
+    limit,
+    skip,
+    sort,
+    descending,
+  } = await getListState(
+    denops,
+    buf,
+  );
   await router.open(denops, "notes-list", {
     q,
     bookId,
     bookName,
     tagId,
     tagName,
+    status,
+    pinned: pinned ? "1" : "0",
     limit: limit.toString(),
     skip: (skip + limit).toString(),
     sort,
@@ -277,11 +344,22 @@ export async function prevNotesList(
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, bookName, tagId, tagName, limit, skip, sort, descending } =
-    await getListState(
-      denops,
-      buf,
-    );
+  const {
+    q,
+    bookId,
+    bookName,
+    tagId,
+    tagName,
+    status,
+    pinned,
+    limit,
+    skip,
+    sort,
+    descending,
+  } = await getListState(
+    denops,
+    buf,
+  );
   const nextSkip = Math.max(0, skip - limit);
   await router.open(denops, "notes-list", {
     q,
@@ -289,6 +367,8 @@ export async function prevNotesList(
     bookName,
     tagId,
     tagName,
+    status,
+    pinned: pinned ? "1" : "0",
     limit: limit.toString(),
     skip: nextSkip.toString(),
     sort,

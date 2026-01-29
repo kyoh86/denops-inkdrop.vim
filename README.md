@@ -21,6 +21,7 @@ call inkdrop#setup#maps()
 - `:InkdropNotes [keyword]` to open the notes list (optional keyword)
 - `:InkdropNew` to create a new note
 - `:InkdropBooks` to open the notebooks list
+- `:InkdropMenu` to open the global menu
 - `:InkdropTags` to open the tags list
 - `:InkdropBookRename` to rename the current notebook in the list
 - `:InkdropTagRename` to rename the current tag in the list
