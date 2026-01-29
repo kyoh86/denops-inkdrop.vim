@@ -5,7 +5,6 @@ import * as option from "@denops/std/option";
 import { batch, collect } from "@denops/std/batch";
 import { getLogger } from "@std/log";
 import { as, ensure, is } from "@core/unknownutil";
-import * as vars from "@denops/std/variable";
 
 import { InkdropClient } from "@kyoh86/inkdrop-local";
 import { Filetype } from "./filetype.ts";
@@ -25,24 +24,26 @@ export async function loadNotesList(
   try {
     const params = ensure(
       buf.bufname.params,
-      is.ObjectOf({
-        q: as.Optional(is.String),
-        bookId: as.Optional(is.String),
-        bookName: as.Optional(is.String),
-        tagId: as.Optional(is.String),
-        tagName: as.Optional(is.String),
-        limit: as.Optional(is.String),
-        skip: as.Optional(is.String),
-        sort: as.Optional(is.String),
-        descending: as.Optional(is.String),
-      }),
-    );
+      as.Optional(
+        is.ObjectOf({
+          q: as.Optional(is.String),
+          bookId: as.Optional(is.String),
+          bookName: as.Optional(is.String),
+          tagId: as.Optional(is.String),
+          tagName: as.Optional(is.String),
+          limit: as.Optional(is.String),
+          skip: as.Optional(is.String),
+          sort: as.Optional(is.String),
+          descending: as.Optional(is.String),
+        }),
+      ),
+    ) ?? {};
     const [defaultLimit, defaultSort, defaultDescending] = await collect(
       denops,
       (denops) => [
-        vars.g.get(denops, "inkdrop_notes_limit", 100),
-        vars.g.get(denops, "inkdrop_notes_sort", "updatedAt"),
-        vars.g.get(denops, "inkdrop_notes_descending", 1),
+        variable.g.get(denops, "inkdrop_notes_limit", 100),
+        variable.g.get(denops, "inkdrop_notes_sort", "updatedAt"),
+        variable.g.get(denops, "inkdrop_notes_descending", 1),
       ],
     );
 

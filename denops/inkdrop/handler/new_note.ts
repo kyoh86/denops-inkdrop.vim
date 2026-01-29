@@ -11,13 +11,15 @@ import { Filetype } from "./filetype.ts";
 import type { StateMan } from "../state.ts";
 import type { Buffer } from "@kyoh86/denops-router";
 import * as fn from "@denops/std/function";
-import * as vars from "@denops/std/variable";
 
 async function resolveBookId(
   denops: Denops,
   client: InkdropClient,
 ): Promise<string | undefined> {
-  const configured = await vars.g.get(denops, "inkdrop_default_book_id");
+  const configured = await variable.g.get(
+    denops,
+    "inkdrop_default_book_id",
+  );
   if (configured) {
     return ensure(configured, is.String);
   }
