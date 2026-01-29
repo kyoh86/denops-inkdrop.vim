@@ -45,3 +45,7 @@ endfunction
 function! inkdrop#note_delete()
   call denops#notify("inkdrop", "noteDelete", [])
 endfunction
+
+function! inkdrop#note_book()
+  call denops#notify("inkdrop", "noteBook", [])
+endfunction

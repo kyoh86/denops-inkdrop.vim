@@ -15,6 +15,7 @@ import {
   isBufferOpener,
   type Router,
 } from "@kyoh86/denops-router";
+import { setNoteStatusById } from "./note_actions.ts";
 
 export async function loadNotesList(
   denops: Denops,
@@ -207,12 +208,29 @@ export async function openNote(
   );
 }
 
+export async function setNoteStatusFromList(
+  denops: Denops,
+  stateMan: StateMan,
+  uParams: Record<string, unknown>,
+) {
+  const params = ensure(uParams, is.ObjectOf({ lnum: is.Number }));
+  const noteIds = ensure(
+    await variable.b.get(denops, "inkdrop_notes_list_ids"),
+    is.ArrayOf(is.String),
+  );
+  const noteId = noteIds[params.lnum - 1];
+  if (!noteId) {
+    return;
+  }
+  await setNoteStatusById(denops, stateMan, noteId);
+}
+
 export async function refreshNotesList(
   denops: Denops,
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, tagId, limit, skip, sort, descending } =
+  const { q, bookId, bookName, tagId, tagName, limit, skip, sort, descending } =
     await getListState(
       denops,
       buf,

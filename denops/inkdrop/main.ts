@@ -18,6 +18,7 @@ import {
   openNote,
   prevNotesList,
   refreshNotesList,
+  setNoteStatusFromList,
 } from "./handler/notes_list.ts";
 import { loadNote, saveNote } from "./handler/note.ts";
 import { loadNewNote, saveNewNote } from "./handler/new_note.ts";
@@ -34,7 +35,11 @@ import {
   renameTag,
 } from "./handler/tags_list.ts";
 import { editTags } from "./handler/tag_edit.ts";
-import { deleteNote, setNoteStatus } from "./handler/note_actions.ts";
+import {
+  deleteNote,
+  setNoteBook,
+  setNoteStatus,
+} from "./handler/note_actions.ts";
 
 export async function main(denops: Denops) {
   const stateMan = new XDGStateMan();
@@ -70,6 +75,7 @@ export async function main(denops: Denops) {
       refresh: (buf, _) => refreshNotesList(denops, router, buf),
       next: (buf, _) => nextNotesList(denops, router, buf),
       prev: (buf, _) => prevNotesList(denops, router, buf),
+      status: (_, params) => setNoteStatusFromList(denops, stateMan, params),
     },
   });
 
@@ -171,6 +177,13 @@ export async function main(denops: Denops) {
     async noteStatus() {
       try {
         await setNoteStatus(denops, stateMan);
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async noteBook() {
+      try {
+        await setNoteBook(denops, stateMan);
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }

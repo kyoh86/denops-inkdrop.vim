@@ -5,3 +5,4 @@ nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-tabedit) <cmd>cal
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-prev) <cmd>call inkdrop#buffer_action#notes_list#prev()<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-next) <cmd>call inkdrop#buffer_action#notes_list#next()<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-refresh) <cmd>call inkdrop#buffer_action#notes_list#refresh()<cr>
+nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-status) <cmd>call inkdrop#buffer_action#notes_list#status(line("."))<cr>

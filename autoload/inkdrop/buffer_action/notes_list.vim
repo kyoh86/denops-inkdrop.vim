@@ -13,3 +13,7 @@ endfunction
 function! inkdrop#buffer_action#notes_list#refresh()
   call denops#request("inkdrop", "router:action", [bufnr(), "refresh", {}])
 endfunction
+
+function! inkdrop#buffer_action#notes_list#status(lnum)
+  call denops#request("inkdrop", "router:action", [bufnr(), "status", {"lnum": a:lnum}])
+endfunction
