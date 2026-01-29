@@ -40,6 +40,10 @@ function! inkdrop#new()
   call denops#notify("inkdrop", "newNote", [])
 endfunction
 
+function! inkdrop#new_book()
+  call denops#notify("inkdrop", "newBook", [])
+endfunction
+
 function! inkdrop#books()
   call denops#notify("inkdrop", "books", [])
 endfunction

@@ -24,6 +24,7 @@ import { loadNote, saveNote } from "./handler/note.ts";
 import { loadNewNote, saveNewNote } from "./handler/new_note.ts";
 import {
   loadBooksList,
+  newBook,
   openBooksList,
   refreshBooksList,
   renameBook,
@@ -164,6 +165,13 @@ export async function main(denops: Denops) {
     async books() {
       try {
         await router.open(denops, "books-list");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async newBook() {
+      try {
+        await newBook(denops, stateMan, router);
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }

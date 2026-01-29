@@ -30,6 +30,7 @@ COMMANDS                                                     *inkdrop-commands*
 :InkdropLogout        Clear saved credentials.
 :InkdropNotes [query] Open notes list (optional keyword).
 :InkdropNew           Create a new note.
+:InkdropNewBook       Create a new notebook.
 :InkdropBooks         Open notebooks list.
 :InkdropMenu          Open global menu list.
 :InkdropTags          Open tags list.
@@ -50,6 +51,7 @@ Global <Plug> mappings (define your own keymaps to these):
 <Plug>(inkdrop-logout)         *inkdrop-plug-logout*
 <Plug>(inkdrop-notes)          *inkdrop-plug-notes*
 <Plug>(inkdrop-new)            *inkdrop-plug-new*
+<Plug>(inkdrop-new-book)       *inkdrop-plug-new-book*
 <Plug>(inkdrop-books)          *inkdrop-plug-books*
 <Plug>(inkdrop-menu)           *inkdrop-plug-menu*
 <Plug>(inkdrop-tags)           *inkdrop-plug-tags*

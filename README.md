@@ -25,6 +25,7 @@ call inkdrop#setup#maps()
 - `:InkdropLogout` to clear saved credentials
 - `:InkdropNotes [keyword]` to open the notes list (optional keyword)
 - `:InkdropNew` to create a new note
+- `:InkdropNewBook` to create a new notebook
 - `:InkdropBooks` to open the notebooks list
 - `:InkdropMenu` to open the global menu
 - `:InkdropTags` to open the tags list
@@ -46,6 +47,7 @@ to define your own:
 - `<Plug>(inkdrop-logout)`
 - `<Plug>(inkdrop-notes)`
 - `<Plug>(inkdrop-new)`
+- `<Plug>(inkdrop-new-book)`
 - `<Plug>(inkdrop-books)`
 - `<Plug>(inkdrop-menu)`
 - `<Plug>(inkdrop-tags)`

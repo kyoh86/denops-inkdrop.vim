@@ -7,6 +7,7 @@ nnoremap <silent> <Plug>(inkdrop-login) <cmd>InkdropLogin<cr>
 nnoremap <silent> <Plug>(inkdrop-logout) <cmd>InkdropLogout<cr>
 nnoremap <silent> <Plug>(inkdrop-notes) <cmd>InkdropNotes<cr>
 nnoremap <silent> <Plug>(inkdrop-new) <cmd>InkdropNew<cr>
+nnoremap <silent> <Plug>(inkdrop-new-book) <cmd>InkdropNewBook<cr>
 nnoremap <silent> <Plug>(inkdrop-books) <cmd>InkdropBooks<cr>
 nnoremap <silent> <Plug>(inkdrop-menu) <cmd>InkdropMenu<cr>
 nnoremap <silent> <Plug>(inkdrop-tags) <cmd>InkdropTags<cr>

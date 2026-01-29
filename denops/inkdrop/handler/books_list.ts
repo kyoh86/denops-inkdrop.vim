@@ -142,3 +142,35 @@ export async function renameBook(
     getLogger("denops-inkdrop").error(err);
   }
 }
+
+export async function newBook(
+  denops: Denops,
+  stateMan: StateMan,
+  router: Router,
+) {
+  try {
+    const state = await stateMan.load();
+    if (!state) {
+      getLogger("denops-inkdrop").error(
+        "No credentials found. Run :InkdropLogin first.",
+      );
+      return;
+    }
+
+    const name = await input(denops, { prompt: "Book name: " });
+    if (!name) {
+      getLogger("denops-inkdrop").warn("Cancelled");
+      return;
+    }
+
+    const client = new InkdropClient({
+      baseUrl: state.baseUrl,
+      username: state.username,
+      password: state.password,
+    });
+    await client.books.upsert({ name: name.trim() });
+    await router.open(denops, "books-list");
+  } catch (err) {
+    getLogger("denops-inkdrop").error(err);
+  }
+}
