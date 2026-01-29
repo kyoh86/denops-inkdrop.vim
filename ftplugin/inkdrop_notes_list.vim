@@ -1,5 +1,9 @@
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open) <cmd>call inkdrop#buffer_action#notes_list#open(line("."))<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-new) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-above"})<cr>
+nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-new-top) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-top"})<cr>
+nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-new-above) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-above"})<cr>
+nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-new-below) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-below"})<cr>
+nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-new-bottom) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-bottom"})<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-vnew) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-left"})<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-vnew-left) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-left"})<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-notes-list-open-vnew-right) <cmd>call inkdrop#buffer_action#notes_list#open(line("."), {"split": "split-right"})<cr>
