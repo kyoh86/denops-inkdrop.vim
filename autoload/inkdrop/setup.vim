@@ -23,9 +23,11 @@ function! inkdrop#setup#maps()
     autocmd Filetype inkdrop_books_list nnoremap <buffer> <c-h> <plug>(inkdrop-buffer-action-books-list-open-new)
     autocmd Filetype inkdrop_books_list nnoremap <buffer> <c-v> <plug>(inkdrop-buffer-action-books-list-open-vnew)
     autocmd Filetype inkdrop_books_list nnoremap <buffer> <c-t> <plug>(inkdrop-buffer-action-books-list-open-tabedit)
+    autocmd Filetype inkdrop_books_list nnoremap <buffer> r     <plug>(inkdrop-buffer-action-books-list-refresh)
     autocmd Filetype inkdrop_tags_list nnoremap <buffer> <cr>  <plug>(inkdrop-buffer-action-tags-list-open)
     autocmd Filetype inkdrop_tags_list nnoremap <buffer> <c-h> <plug>(inkdrop-buffer-action-tags-list-open-new)
     autocmd Filetype inkdrop_tags_list nnoremap <buffer> <c-v> <plug>(inkdrop-buffer-action-tags-list-open-vnew)
     autocmd Filetype inkdrop_tags_list nnoremap <buffer> <c-t> <plug>(inkdrop-buffer-action-tags-list-open-tabedit)
+    autocmd Filetype inkdrop_tags_list nnoremap <buffer> r     <plug>(inkdrop-buffer-action-tags-list-refresh)
   augroup END
 endfunction

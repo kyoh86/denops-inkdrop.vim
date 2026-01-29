@@ -51,6 +51,7 @@ In the books/tags list buffer:
 <Ctrl-h>            Open notes list in split.
 <Ctrl-v>            Open notes list in vertical split.
 <Ctrl-t>            Open notes list in new tab.
+r                   Refresh list.
 
 ==============================================================================
 CONFIGURATION                                               *inkdrop-configuration*

@@ -80,3 +80,7 @@ export async function openBooksList(
     params.open_option,
   );
 }
+
+export async function refreshBooksList(denops: Denops, router: Router) {
+  await router.open(denops, "books-list");
+}

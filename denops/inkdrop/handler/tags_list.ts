@@ -80,3 +80,7 @@ export async function openTagsList(
     params.open_option,
   );
 }
+
+export async function refreshTagsList(denops: Denops, router: Router) {
+  await router.open(denops, "tags-list");
+}
