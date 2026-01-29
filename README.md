@@ -21,6 +21,8 @@ call inkdrop#setup#maps()
 - `:InkdropNotes [keyword]` to open the notes list (optional keyword)
 - `:InkdropNew` to create a new note
 - `:InkdropBooks` to open the notebooks list
+- `:InkdropTags` to open the tags list
+- `:InkdropTagEdit` to edit tags for the current note
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 

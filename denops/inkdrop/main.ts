@@ -22,6 +22,8 @@ import {
 import { loadNote, saveNote } from "./handler/note.ts";
 import { loadNewNote, saveNewNote } from "./handler/new_note.ts";
 import { loadBooksList, openBooksList } from "./handler/books_list.ts";
+import { loadTagsList, openTagsList } from "./handler/tags_list.ts";
+import { editTags } from "./handler/tag_edit.ts";
 
 export async function main(denops: Denops) {
   const stateMan = new XDGStateMan();
@@ -64,6 +66,13 @@ export async function main(denops: Denops) {
     load: (_ctx, buf) => loadBooksList(denops, stateMan, buf),
     actions: {
       open: (_, params) => openBooksList(denops, router, params),
+    },
+  });
+
+  router.addHandler("tags-list", {
+    load: (_ctx, buf) => loadTagsList(denops, stateMan, buf),
+    actions: {
+      open: (_, params) => openTagsList(denops, router, params),
     },
   });
 
@@ -126,6 +135,20 @@ export async function main(denops: Denops) {
     async books() {
       try {
         await router.open(denops, "books-list");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async tags() {
+      try {
+        await router.open(denops, "tags-list");
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async tagEdit() {
+      try {
+        await editTags(denops, stateMan);
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }

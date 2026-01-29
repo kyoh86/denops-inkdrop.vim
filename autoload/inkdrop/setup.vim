@@ -4,6 +4,8 @@ function! inkdrop#setup#commands()
   command! -nargs=? InkdropNotes call inkdrop#notes(<q-args>)
   command! InkdropNew call inkdrop#new()
   command! InkdropBooks call inkdrop#books()
+  command! InkdropTags call inkdrop#tags()
+  command! InkdropTagEdit call inkdrop#tag_edit()
   command! InkdropSearch call denops#notify('inkdrop', 'search', [])
 endfunction
 
@@ -21,5 +23,9 @@ function! inkdrop#setup#maps()
     autocmd Filetype inkdrop_books_list nnoremap <buffer> <c-h> <plug>(inkdrop-buffer-action-books-list-open-new)
     autocmd Filetype inkdrop_books_list nnoremap <buffer> <c-v> <plug>(inkdrop-buffer-action-books-list-open-vnew)
     autocmd Filetype inkdrop_books_list nnoremap <buffer> <c-t> <plug>(inkdrop-buffer-action-books-list-open-tabedit)
+    autocmd Filetype inkdrop_tags_list nnoremap <buffer> <cr>  <plug>(inkdrop-buffer-action-tags-list-open)
+    autocmd Filetype inkdrop_tags_list nnoremap <buffer> <c-h> <plug>(inkdrop-buffer-action-tags-list-open-new)
+    autocmd Filetype inkdrop_tags_list nnoremap <buffer> <c-v> <plug>(inkdrop-buffer-action-tags-list-open-vnew)
+    autocmd Filetype inkdrop_tags_list nnoremap <buffer> <c-t> <plug>(inkdrop-buffer-action-tags-list-open-tabedit)
   augroup END
 endfunction

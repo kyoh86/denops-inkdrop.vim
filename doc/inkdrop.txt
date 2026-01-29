@@ -28,6 +28,8 @@ COMMANDS                                                     *inkdrop-commands*
 :InkdropNotes [query] Open notes list (optional keyword).
 :InkdropNew           Create a new note.
 :InkdropBooks         Open notebooks list.
+:InkdropTags          Open tags list.
+:InkdropTagEdit       Edit tags for the current note.
 :InkdropSearch        Prompt for keyword and open notes list.
 
 ==============================================================================
@@ -42,6 +44,13 @@ In the notes list buffer:
 <Ctrl-k>            Open previous page.
 <Ctrl-j>            Open next page.
 r                   Refresh list.
+
+In the books/tags list buffer:
+
+<CR>                Open notes list under cursor.
+<Ctrl-h>            Open notes list in split.
+<Ctrl-v>            Open notes list in vertical split.
+<Ctrl-t>            Open notes list in new tab.
 
 ==============================================================================
 CONFIGURATION                                               *inkdrop-configuration*

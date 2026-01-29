@@ -21,3 +21,11 @@ endfunction
 function! inkdrop#books()
   call denops#notify("inkdrop", "books", [])
 endfunction
+
+function! inkdrop#tags()
+  call denops#notify("inkdrop", "tags", [])
+endfunction
+
+function! inkdrop#tag_edit()
+  call denops#notify("inkdrop", "tagEdit", [])
+endfunction

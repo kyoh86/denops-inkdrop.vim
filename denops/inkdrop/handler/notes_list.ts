@@ -27,6 +27,7 @@ export async function loadNotesList(
       is.ObjectOf({
         q: as.Optional(is.String),
         bookId: as.Optional(is.String),
+        tagId: as.Optional(is.String),
         limit: as.Optional(is.String),
         skip: as.Optional(is.String),
         sort: as.Optional(is.String),
@@ -53,6 +54,7 @@ export async function loadNotesList(
       : Number(defaultDescending) !== 0;
     const q = params.q;
     const bookId = params.bookId;
+    const tagId = params.tagId;
 
     await option.bufhidden.setBuffer(denops, buf.bufnr, "wipe");
 
@@ -77,9 +79,15 @@ export async function loadNotesList(
       sort,
       descending,
     });
-    const filteredNotes = bookId
-      ? notes.filter((note) => note.bookId === bookId)
-      : notes;
+    let filteredNotes = notes;
+    if (bookId) {
+      filteredNotes = filteredNotes.filter((note) => note.bookId === bookId);
+    }
+    if (tagId) {
+      filteredNotes = filteredNotes.filter((note) =>
+        note.tags?.includes(tagId)
+      );
+    }
     const noteIds = filteredNotes.map((note) => note._id);
     const noteTitles = filteredNotes.map((note) => note.title ?? "(untitled)");
 
@@ -96,6 +104,7 @@ export async function loadNotesList(
           descending ? 1 : 0,
         );
         await variable.b.set(denops, "inkdrop_notes_list_book_id", bookId);
+        await variable.b.set(denops, "inkdrop_notes_list_tag_id", tagId);
         await buffer.replace(denops, buf.bufnr, noteTitles);
         await option.filetype.setLocal(denops, Filetype.NotesList);
         await option.modified.setLocal(denops, false);
@@ -116,6 +125,10 @@ async function getListState(denops: Denops, buf: Buffer) {
       ),
       bookId: ensure(
         await variable.b.get(denops, "inkdrop_notes_list_book_id"),
+        as.Optional(is.String),
+      ),
+      tagId: ensure(
+        await variable.b.get(denops, "inkdrop_notes_list_tag_id"),
         as.Optional(is.String),
       ),
       limit: ensure(
@@ -169,13 +182,15 @@ export async function refreshNotesList(
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, limit, skip, sort, descending } = await getListState(
-    denops,
-    buf,
-  );
+  const { q, bookId, tagId, limit, skip, sort, descending } =
+    await getListState(
+      denops,
+      buf,
+    );
   await router.open(denops, "notes-list", {
     q,
     bookId,
+    tagId,
     limit: limit.toString(),
     skip: skip.toString(),
     sort,
@@ -188,13 +203,15 @@ export async function nextNotesList(
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, limit, skip, sort, descending } = await getListState(
-    denops,
-    buf,
-  );
+  const { q, bookId, tagId, limit, skip, sort, descending } =
+    await getListState(
+      denops,
+      buf,
+    );
   await router.open(denops, "notes-list", {
     q,
     bookId,
+    tagId,
     limit: limit.toString(),
     skip: (skip + limit).toString(),
     sort,
@@ -207,14 +224,16 @@ export async function prevNotesList(
   router: Router,
   buf: Buffer,
 ) {
-  const { q, bookId, limit, skip, sort, descending } = await getListState(
-    denops,
-    buf,
-  );
+  const { q, bookId, tagId, limit, skip, sort, descending } =
+    await getListState(
+      denops,
+      buf,
+    );
   const nextSkip = Math.max(0, skip - limit);
   await router.open(denops, "notes-list", {
     q,
     bookId,
+    tagId,
     limit: limit.toString(),
     skip: nextSkip.toString(),
     sort,
