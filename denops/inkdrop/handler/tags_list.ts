@@ -46,6 +46,7 @@ export async function loadTagsList(
     await buffer.ensure(denops, buf.bufnr, async () => {
       await batch(denops, async (denops) => {
         await variable.b.set(denops, "inkdrop_tags_list_ids", tagIds);
+        await variable.b.set(denops, "inkdrop_tags_list_titles", tagTitles);
         await buffer.replace(denops, buf.bufnr, tagTitles);
         await option.filetype.setLocal(denops, Filetype.TagsList);
         await option.modified.setLocal(denops, false);
@@ -74,10 +75,15 @@ export async function openTagsList(
   if (!tagId) {
     return;
   }
+  const tagTitles = ensure(
+    await variable.b.get(denops, "inkdrop_tags_list_titles"),
+    as.Optional(is.ArrayOf(is.String)),
+  );
+  const tagName = tagTitles?.[params.lnum - 1];
   await router.open(
     denops,
     "notes-list",
-    { tagId },
+    { tagId, tagName },
     undefined,
     params.open_option,
   );
