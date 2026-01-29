@@ -15,5 +15,5 @@ nnoremap <silent> <Plug>(inkdrop-rename-book) <cmd>InkdropRenameBook<cr>
 nnoremap <silent> <Plug>(inkdrop-rename-tag) <cmd>InkdropRenameTag<cr>
 nnoremap <silent> <Plug>(inkdrop-note-status) <cmd>InkdropNoteStatus<cr>
 nnoremap <silent> <Plug>(inkdrop-move-note) <cmd>InkdropMoveNote<cr>
-nnoremap <silent> <Plug>(inkdrop-note-delete) <cmd>InkdropNoteDelete<cr>
+nnoremap <silent> <Plug>(inkdrop-delete-note) <cmd>InkdropDeleteNote<cr>
 nnoremap <silent> <Plug>(inkdrop-search) <cmd>InkdropSearch<cr>

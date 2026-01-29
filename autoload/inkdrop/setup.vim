@@ -11,7 +11,7 @@ function! inkdrop#setup#commands()
   command! InkdropRenameTag call inkdrop#rename_tag()
   command! InkdropNoteStatus call inkdrop#note_status()
   command! InkdropMoveNote call inkdrop#move_note()
-  command! InkdropNoteDelete call inkdrop#note_delete()
+  command! InkdropDeleteNote call inkdrop#note_delete()
   command! InkdropSearch call denops#notify('inkdrop', 'search', [])
 endfunction
 

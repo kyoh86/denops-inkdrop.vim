@@ -33,7 +33,7 @@ call inkdrop#setup#maps()
 - `:InkdropEditTags` to edit tags for the current note
 - `:InkdropNoteStatus` to set the current note status
 - `:InkdropMoveNote` to change the notebook of the current note
-- `:InkdropNoteDelete` to delete the current note
+- `:InkdropDeleteNote` to delete the current note
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 
@@ -54,7 +54,7 @@ to define your own:
 - `<Plug>(inkdrop-rename-tag)`
 - `<Plug>(inkdrop-note-status)`
 - `<Plug>(inkdrop-move-note)`
-- `<Plug>(inkdrop-note-delete)`
+- `<Plug>(inkdrop-delete-note)`
 - `<Plug>(inkdrop-search)`
 
 List buffer `<Plug>` mappings are defined in their filetypes and are used by

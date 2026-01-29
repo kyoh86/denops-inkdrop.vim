@@ -81,7 +81,7 @@ function! inkdrop#note_status()
 endfunction
 
 function! inkdrop#note_delete()
-  if !s:require_note_context("InkdropNoteDelete")
+  if !s:require_note_context("InkdropDeleteNote")
     return
   endif
   call denops#notify("inkdrop", "noteDelete", [])

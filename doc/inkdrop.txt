@@ -38,7 +38,7 @@ COMMANDS                                                     *inkdrop-commands*
 :InkdropRenameTag     Rename the tag under cursor in the tags list.
 :InkdropNoteStatus    Set the status of the current note.
 :InkdropMoveNote      Change the notebook of the current note.
-:InkdropNoteDelete    Delete the current note.
+:InkdropDeleteNote    Delete the current note.
 :InkdropSearch        Prompt for keyword and open notes list.
 
 ==============================================================================
@@ -58,7 +58,7 @@ Global <Plug> mappings (define your own keymaps to these):
 <Plug>(inkdrop-rename-tag)     *inkdrop-plug-rename-tag*
 <Plug>(inkdrop-note-status)    *inkdrop-plug-note-status*
 <Plug>(inkdrop-move-note)      *inkdrop-plug-move-note*
-<Plug>(inkdrop-note-delete)    *inkdrop-plug-note-delete*
+<Plug>(inkdrop-delete-note)    *inkdrop-plug-delete-note*
 <Plug>(inkdrop-search)         *inkdrop-plug-search*
 
 In the notes list buffer:
