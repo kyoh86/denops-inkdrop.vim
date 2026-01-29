@@ -30,15 +30,15 @@ function! inkdrop#tags()
   call denops#notify("inkdrop", "tags", [])
 endfunction
 
-function! inkdrop#tag_edit()
+function! inkdrop#edit_tags()
   call denops#notify("inkdrop", "tagEdit", [])
 endfunction
 
-function! inkdrop#book_rename()
+function! inkdrop#rename_book()
   call inkdrop#buffer_action#books_list#rename(line("."))
 endfunction
 
-function! inkdrop#tag_rename()
+function! inkdrop#rename_tag()
   call inkdrop#buffer_action#tags_list#rename(line("."))
 endfunction
 
@@ -50,6 +50,6 @@ function! inkdrop#note_delete()
   call denops#notify("inkdrop", "noteDelete", [])
 endfunction
 
-function! inkdrop#change_book()
+function! inkdrop#move_note()
   call denops#notify("inkdrop", "noteBook", [])
 endfunction
