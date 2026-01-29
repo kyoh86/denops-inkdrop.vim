@@ -27,6 +27,7 @@ COMMANDS                                                     *inkdrop-commands*
 :InkdropLogout        Clear saved credentials.
 :InkdropNotes [query] Open notes list (optional keyword).
 :InkdropNew           Create a new note.
+:InkdropBooks         Open notebooks list.
 :InkdropSearch        Prompt for keyword and open notes list.
 
 ==============================================================================

@@ -17,3 +17,7 @@ endfunction
 function! inkdrop#new()
   call denops#notify("inkdrop", "newNote", [])
 endfunction
+
+function! inkdrop#books()
+  call denops#notify("inkdrop", "books", [])
+endfunction

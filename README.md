@@ -20,6 +20,7 @@ call inkdrop#setup#maps()
 - `:InkdropLogout` to clear saved credentials
 - `:InkdropNotes [keyword]` to open the notes list (optional keyword)
 - `:InkdropNew` to create a new note
+- `:InkdropBooks` to open the notebooks list
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 
