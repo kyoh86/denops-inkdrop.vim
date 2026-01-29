@@ -40,18 +40,46 @@ async function updateNoteStatus(
   });
 }
 
-export async function archiveNote(denops: Denops, stateMan: StateMan) {
+export async function setNoteStatus(denops: Denops, stateMan: StateMan) {
   try {
-    const ok = await fn.confirm(
-      denops,
-      "Archive this note?",
-      "&Yes\n&No",
-      2,
+    const noteId = ensure(
+      await variable.b.get(denops, "inkdrop_note_id"),
+      is.String,
     );
-    if (ok !== 1) {
+    const state = await stateMan.load();
+    if (!state) {
+      getLogger("denops-inkdrop").error(
+        "No credentials found. Run :InkdropLogin first.",
+      );
       return;
     }
-    await updateNoteStatus(denops, stateMan, "completed");
+
+    const client = new InkdropClient({
+      baseUrl: state.baseUrl,
+      username: state.username,
+      password: state.password,
+    });
+    const note = await client.docs.get<NoteDoc>(noteId);
+    const current = note.status ?? "none";
+    const labels: Array<{ status: NoteStatus; label: string }> = [
+      { status: "none", label: "None" },
+      { status: "active", label: "Active" },
+      { status: "onHold", label: "On Hold" },
+      { status: "completed", label: "Completed" },
+      { status: "dropped", label: "Dropped" },
+    ];
+    const items = [
+      "Select status:",
+      ...labels.map((item, index) => {
+        const marker = item.status === current ? " (current)" : "";
+        return `${index + 1}. ${item.label}${marker}`;
+      }),
+    ];
+    const selected = await denops.call("inputlist", items) as number;
+    if (selected <= 0 || selected > labels.length) {
+      return;
+    }
+    await updateNoteStatus(denops, stateMan, labels[selected - 1].status);
   } catch (err) {
     getLogger("denops-inkdrop").error(err);
   }

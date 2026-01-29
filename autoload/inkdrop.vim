@@ -38,8 +38,8 @@ function! inkdrop#tag_rename()
   call inkdrop#buffer_action#tags_list#rename(line("."))
 endfunction
 
-function! inkdrop#note_archive()
-  call denops#notify("inkdrop", "noteArchive", [])
+function! inkdrop#note_status()
+  call denops#notify("inkdrop", "noteStatus", [])
 endfunction
 
 function! inkdrop#note_delete()

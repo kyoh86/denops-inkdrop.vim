@@ -34,7 +34,7 @@ import {
   renameTag,
 } from "./handler/tags_list.ts";
 import { editTags } from "./handler/tag_edit.ts";
-import { archiveNote, deleteNote } from "./handler/note_actions.ts";
+import { deleteNote, setNoteStatus } from "./handler/note_actions.ts";
 
 export async function main(denops: Denops) {
   const stateMan = new XDGStateMan();
@@ -168,9 +168,9 @@ export async function main(denops: Denops) {
         getLogger("denops-inkdrop").error(err);
       }
     },
-    async noteArchive() {
+    async noteStatus() {
       try {
-        await archiveNote(denops, stateMan);
+        await setNoteStatus(denops, stateMan);
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }
