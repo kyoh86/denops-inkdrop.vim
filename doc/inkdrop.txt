@@ -34,7 +34,7 @@ COMMANDS                                                     *inkdrop-commands*
 :InkdropBookRename    Rename the book under cursor in the books list.
 :InkdropTagRename     Rename the tag under cursor in the tags list.
 :InkdropNoteStatus    Set the status of the current note.
-:InkdropNoteBook      Change the notebook of the current note.
+:InkdropChangeBook    Change the notebook of the current note.
 :InkdropNoteDelete    Delete the current note.
 :InkdropSearch        Prompt for keyword and open notes list.
 

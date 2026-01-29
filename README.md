@@ -27,7 +27,7 @@ call inkdrop#setup#maps()
 - `:InkdropTagRename` to rename the current tag in the list
 - `:InkdropTagEdit` to edit tags for the current note
 - `:InkdropNoteStatus` to set the current note status
-- `:InkdropNoteBook` to change the notebook of the current note
+- `:InkdropChangeBook` to change the notebook of the current note
 - `:InkdropNoteDelete` to delete the current note
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
