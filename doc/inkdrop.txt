@@ -46,20 +46,20 @@ MAPPINGS                                                     *inkdrop-mappings*
 
 Global <Plug> mappings (define your own keymaps to these):
 
-<Plug>(inkdrop-login)
-<Plug>(inkdrop-logout)
-<Plug>(inkdrop-notes)
-<Plug>(inkdrop-new)
-<Plug>(inkdrop-books)
-<Plug>(inkdrop-menu)
-<Plug>(inkdrop-tags)
-<Plug>(inkdrop-edit-tags)
-<Plug>(inkdrop-rename-book)
-<Plug>(inkdrop-rename-tag)
-<Plug>(inkdrop-note-status)
-<Plug>(inkdrop-move-note)
-<Plug>(inkdrop-note-delete)
-<Plug>(inkdrop-search)
+<Plug>(inkdrop-login)          *inkdrop-plug-login*
+<Plug>(inkdrop-logout)         *inkdrop-plug-logout*
+<Plug>(inkdrop-notes)          *inkdrop-plug-notes*
+<Plug>(inkdrop-new)            *inkdrop-plug-new*
+<Plug>(inkdrop-books)          *inkdrop-plug-books*
+<Plug>(inkdrop-menu)           *inkdrop-plug-menu*
+<Plug>(inkdrop-tags)           *inkdrop-plug-tags*
+<Plug>(inkdrop-edit-tags)      *inkdrop-plug-edit-tags*
+<Plug>(inkdrop-rename-book)    *inkdrop-plug-rename-book*
+<Plug>(inkdrop-rename-tag)     *inkdrop-plug-rename-tag*
+<Plug>(inkdrop-note-status)    *inkdrop-plug-note-status*
+<Plug>(inkdrop-move-note)      *inkdrop-plug-move-note*
+<Plug>(inkdrop-note-delete)    *inkdrop-plug-note-delete*
+<Plug>(inkdrop-search)         *inkdrop-plug-search*
 
 In the notes list buffer:
 
