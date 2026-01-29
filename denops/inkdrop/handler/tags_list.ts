@@ -5,6 +5,8 @@ import * as option from "@denops/std/option";
 import { batch } from "@denops/std/batch";
 import { getLogger } from "@std/log";
 import { as, ensure, is } from "@core/unknownutil";
+import { input } from "@denops/std/helper";
+import * as fn from "@denops/std/function";
 
 import { InkdropClient, type TagDoc } from "@kyoh86/inkdrop-local";
 import { Filetype } from "./filetype.ts";
@@ -83,4 +85,54 @@ export async function openTagsList(
 
 export async function refreshTagsList(denops: Denops, router: Router) {
   await router.open(denops, "tags-list");
+}
+
+export async function renameTag(
+  denops: Denops,
+  stateMan: StateMan,
+  router: Router,
+  uParams: Record<string, unknown>,
+) {
+  try {
+    const params = ensure(uParams, is.ObjectOf({ lnum: is.Number }));
+    const tagIds = ensure(
+      await variable.b.get(denops, "inkdrop_tags_list_ids"),
+      is.ArrayOf(is.String),
+    );
+    const tagId = tagIds[params.lnum - 1];
+    if (!tagId) {
+      return;
+    }
+
+    const state = await stateMan.load();
+    if (!state) {
+      getLogger("denops-inkdrop").error(
+        "No credentials found. Run :InkdropLogin first.",
+      );
+      return;
+    }
+
+    const currentName = await fn.getline(denops, params.lnum) as string;
+    const newName = await input(denops, {
+      prompt: "Tag name: ",
+      text: currentName ?? "",
+    });
+    if (!newName || newName.trim() === currentName) {
+      return;
+    }
+
+    const client = new InkdropClient({
+      baseUrl: state.baseUrl,
+      username: state.username,
+      password: state.password,
+    });
+    const tag = await client.docs.get<TagDoc>(tagId);
+    await client.tags.upsert({
+      ...tag,
+      name: newName.trim(),
+    });
+    await router.open(denops, "tags-list");
+  } catch (err) {
+    getLogger("denops-inkdrop").error(err);
+  }
 }

@@ -29,3 +29,19 @@ endfunction
 function! inkdrop#tag_edit()
   call denops#notify("inkdrop", "tagEdit", [])
 endfunction
+
+function! inkdrop#book_rename()
+  call inkdrop#buffer_action#books_list#rename(line("."))
+endfunction
+
+function! inkdrop#tag_rename()
+  call inkdrop#buffer_action#tags_list#rename(line("."))
+endfunction
+
+function! inkdrop#note_archive()
+  call denops#notify("inkdrop", "noteArchive", [])
+endfunction
+
+function! inkdrop#note_delete()
+  call denops#notify("inkdrop", "noteDelete", [])
+endfunction

@@ -22,7 +22,11 @@ call inkdrop#setup#maps()
 - `:InkdropNew` to create a new note
 - `:InkdropBooks` to open the notebooks list
 - `:InkdropTags` to open the tags list
+- `:InkdropBookRename` to rename the current notebook in the list
+- `:InkdropTagRename` to rename the current tag in the list
 - `:InkdropTagEdit` to edit tags for the current note
+- `:InkdropNoteArchive` to archive the current note
+- `:InkdropNoteDelete` to delete the current note
 - `:InkdropSearch` to search notes by keyword
 - `<CR>` on a note to open it
 

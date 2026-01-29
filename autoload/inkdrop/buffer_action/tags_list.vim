@@ -5,3 +5,7 @@ endfunction
 function! inkdrop#buffer_action#tags_list#refresh()
   call denops#request("inkdrop", "router:action", [bufnr(), "refresh", {}])
 endfunction
+
+function! inkdrop#buffer_action#tags_list#rename(lnum)
+  call denops#request("inkdrop", "router:action", [bufnr(), "rename", {"lnum": a:lnum}])
+endfunction

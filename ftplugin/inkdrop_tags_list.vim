@@ -3,3 +3,4 @@ nnoremap <buffer> <plug>(inkdrop-buffer-action-tags-list-open-new) <cmd>call ink
 nnoremap <buffer> <plug>(inkdrop-buffer-action-tags-list-open-vnew) <cmd>call inkdrop#buffer_action#tags_list#open(line("."), {"split": "split-left"})<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-tags-list-open-tabedit) <cmd>call inkdrop#buffer_action#tags_list#open(line("."), {"split": "split-tab"})<cr>
 nnoremap <buffer> <plug>(inkdrop-buffer-action-tags-list-refresh) <cmd>call inkdrop#buffer_action#tags_list#refresh()<cr>
+nnoremap <buffer> <plug>(inkdrop-buffer-action-tags-list-rename) <cmd>call inkdrop#buffer_action#tags_list#rename(line("."))<cr>

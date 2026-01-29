@@ -6,6 +6,10 @@ function! inkdrop#setup#commands()
   command! InkdropBooks call inkdrop#books()
   command! InkdropTags call inkdrop#tags()
   command! InkdropTagEdit call inkdrop#tag_edit()
+  command! InkdropBookRename call inkdrop#book_rename()
+  command! InkdropTagRename call inkdrop#tag_rename()
+  command! InkdropNoteArchive call inkdrop#note_archive()
+  command! InkdropNoteDelete call inkdrop#note_delete()
   command! InkdropSearch call denops#notify('inkdrop', 'search', [])
 endfunction
 

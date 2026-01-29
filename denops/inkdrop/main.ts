@@ -25,13 +25,16 @@ import {
   loadBooksList,
   openBooksList,
   refreshBooksList,
+  renameBook,
 } from "./handler/books_list.ts";
 import {
   loadTagsList,
   openTagsList,
   refreshTagsList,
+  renameTag,
 } from "./handler/tags_list.ts";
 import { editTags } from "./handler/tag_edit.ts";
+import { archiveNote, deleteNote } from "./handler/note_actions.ts";
 
 export async function main(denops: Denops) {
   const stateMan = new XDGStateMan();
@@ -75,6 +78,7 @@ export async function main(denops: Denops) {
     actions: {
       open: (_, params) => openBooksList(denops, router, params),
       refresh: () => refreshBooksList(denops, router),
+      rename: (_, params) => renameBook(denops, stateMan, router, params),
     },
   });
 
@@ -83,6 +87,7 @@ export async function main(denops: Denops) {
     actions: {
       open: (_, params) => openTagsList(denops, router, params),
       refresh: () => refreshTagsList(denops, router),
+      rename: (_, params) => renameTag(denops, stateMan, router, params),
     },
   });
 
@@ -159,6 +164,20 @@ export async function main(denops: Denops) {
     async tagEdit() {
       try {
         await editTags(denops, stateMan);
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async noteArchive() {
+      try {
+        await archiveNote(denops, stateMan);
+      } catch (err) {
+        getLogger("denops-inkdrop").error(err);
+      }
+    },
+    async noteDelete() {
+      try {
+        await deleteNote(denops, stateMan);
       } catch (err) {
         getLogger("denops-inkdrop").error(err);
       }
