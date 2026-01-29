@@ -68,6 +68,8 @@ Buffer-local `<Plug>` mappings:
   - `<Plug>(inkdrop-buffer-action-notes-list-open)`
   - `<Plug>(inkdrop-buffer-action-notes-list-open-new)`
   - `<Plug>(inkdrop-buffer-action-notes-list-open-vnew)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-open-vnew-left)`
+  - `<Plug>(inkdrop-buffer-action-notes-list-open-vnew-right)`
   - `<Plug>(inkdrop-buffer-action-notes-list-open-tabedit)`
   - `<Plug>(inkdrop-buffer-action-notes-list-prev)`
   - `<Plug>(inkdrop-buffer-action-notes-list-next)`
@@ -77,12 +79,16 @@ Buffer-local `<Plug>` mappings:
   - `<Plug>(inkdrop-buffer-action-books-list-open)`
   - `<Plug>(inkdrop-buffer-action-books-list-open-new)`
   - `<Plug>(inkdrop-buffer-action-books-list-open-vnew)`
+  - `<Plug>(inkdrop-buffer-action-books-list-open-vnew-left)`
+  - `<Plug>(inkdrop-buffer-action-books-list-open-vnew-right)`
   - `<Plug>(inkdrop-buffer-action-books-list-open-tabedit)`
   - `<Plug>(inkdrop-buffer-action-books-list-refresh)`
 - Tags list:
   - `<Plug>(inkdrop-buffer-action-tags-list-open)`
   - `<Plug>(inkdrop-buffer-action-tags-list-open-new)`
   - `<Plug>(inkdrop-buffer-action-tags-list-open-vnew)`
+  - `<Plug>(inkdrop-buffer-action-tags-list-open-vnew-left)`
+  - `<Plug>(inkdrop-buffer-action-tags-list-open-vnew-right)`
   - `<Plug>(inkdrop-buffer-action-tags-list-open-tabedit)`
   - `<Plug>(inkdrop-buffer-action-tags-list-refresh)`
 - Menu list:
